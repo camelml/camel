@@ -4,18 +4,52 @@
 
 ## Folder Structure
 
-### build
+### build/
 
 Contains build library
 
-### include
+### include/
 
 Contains include library (.h/.hpp)
 
-### src
+### src/
 
 Contains source file (.c/.cpp)
 
-### test
+### test/
 
 Contains examples and test files
+
+## datasets/
+
+Contains csv,txt files used for examples
+
+## Installing
+
+1. Clone repo
+
+   `git clone https://github.com/camelml/camel`
+
+2. Change directory
+
+   `cd camel`
+
+3. Create a build directory
+
+   `mkdir build`
+
+4. Enter build directory
+
+   `cd build`
+
+5. Run create makefiles
+
+   `cmake ..`
+
+6. Run makefiles
+
+   `make`
+
+7. Install library
+
+   `make install`
