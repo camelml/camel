@@ -53,3 +53,8 @@ Contains csv,txt files used for examples
 7. Install library
 
    `make install`
+
+## Running
+
+1. Run main.cpp using the following command
+   `g++ -std=c++11 main.cpp`
