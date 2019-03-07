@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <ctime>
-
+#include <bits/stdc++.h>
 std::vector<Data> read_iris_data(const std::string &path)
 {
 	std::vector<Data> data;
@@ -67,12 +67,12 @@ void run_knn(std::vector<Data> test, std::vector<Data> training, size_t k)
 			correct++;
 		}
 	}
-	std::cout << 
-		correct << " of "<< test.size() << 
-		" (" << 
+	std::cout <<
+		correct << " of "<< test.size() <<
+		" (" <<
 		static_cast<double>(100.0) *correct/static_cast<double>(test.size()) <<
 		")" << std::endl;
-	
+
 }
 
 void normalize(std::vector<Data> data)
