@@ -1,37 +1,113 @@
+#include "knn.h"
 #include <iostream>
-#include <armadillo>
-#include "../lib/libfast_knn.h"
+#include <fstream>
+#include <sstream>
+#include <ctime>
 
-using arma::rowvec;
-
-int main() 
+std::vector<Data> read_iris_data(const std::string &path)
 {
-	FastKNN datatest;
-// http://archive.ics.uci.edu/ml/datasets/Iris - change last col to number... each number is a diferent class
-	datatest.train("datasets/iris.data");
+	std::vector<Data> data;
+	std::ifstream input(path);
+	std::string line;
+	while(std::getline(input, line))
+	{
+		std::stringstream test(line);
+		std::string segment;
+		std::vector<std::string> seglist;
 
-	rowvec X1, X2, X3, X4, X5;
-	X1 << 5.0 << 3.0 << 1.6 << 0.2 << endr;
-	X2 << 1.0 << 2.0 << 1.6 << 2.2 << endr;
-	X3 << 6.0 << 4.0 << 4.6 << 3.2 << endr;
-	X4 << 0.9 << 1.0 << 2.6 << 2.2 << endr;
-	X5 << 9.0 << 7.0 << 4.6 << 4.2 << endr;
-	
-    cout << "Test Manhattan:" << endl;
-    cout << "1: " << X1 << "\tResult: " << datatest.Classify("manhattan", X1, 10) << endl;
-    cout << "2: " << X2 << "\tResult: " << datatest.Classify("manhattan", X2, 10) << endl;
-    cout << "3: " << X3 << "\tResult: " << datatest.Classify("manhattan", X3, 10) << endl;
-    cout << "4: " << X4 << "\tResult: " << datatest.Classify("manhattan", X4, 10) << endl;
-    cout << "5: " << X5 << "\tResult: " << datatest.Classify("manhattan", X5, 10) << endl;
-	cout << "\n";
+		double *fields = new double[10];
+		Data d;
+		d.fields = fields;
+		d.size = 4;
+		int index = 0;
+		while (std::getline(test, segment, ','))
+		{
+			if (index == d.size)
+			{
+				d.cls = segment;
+				break;
+			}
 
-    cout << "Test Euclidean:" << endl;
-    cout << "1: " << X1 << "\tResult: " << datatest.Classify("euclidean", X1, 10) << endl;
-	cout << "2: " << X2 << "\tResult: " << datatest.Classify("euclidean", X2, 10) << endl;
-	cout << "3: " << X3 << "\tResult: " << datatest.Classify("euclidean", X3, 10) << endl;
-	cout << "4: " << X4 << "\tResult: " << datatest.Classify("euclidean", X4, 10) << endl;
-	cout << "5: " << X5 << "\tResult: " << datatest.Classify("euclidean", X5, 10) << endl;
-	cout << "\n";
+			fields[index] = std::stod(segment);
+			index++;
+		}
+		data.push_back(d);
+	}
+	return data;
+}
+
+std::pair<std::vector<Data>, std::vector<Data>> split_data(std::vector<Data> data)
+{
+	std::vector<Data> training;
+	std::vector<Data> test;
+	size_t percentage70 = data.size() * 0.7;
+	size_t index = 0;
+	while (index < percentage70)
+	{
+		training.push_back(data[index]);
+		index++;
+	}
+	while (index < data.size())
+	{
+		test.push_back(data[index]);
+		index++;
+	}
+	return std::make_pair(training, test);
+}
+
+void run_knn(std::vector<Data> test, std::vector<Data> training, size_t k)
+{
+	Knn *knn = new Knn();
+	size_t correct = 0;
+	for (auto test_data : test)
+	{
+		std::string maxClass = knn->getNeighbours(test_data, training, k);
+		if (maxClass.compare(test_data.cls) == 0)
+		{
+			correct++;
+		}
+	}
+	std::cout << 
+		correct << " of "<< test.size() << 
+		" (" << 
+		static_cast<double>(100.0) *correct/static_cast<double>(test.size()) <<
+		")" << std::endl;
 	
+}
+
+void normalize(std::vector<Data> data)
+{
+	double max = std::numeric_limits<double>::max();
+	double min = std::numeric_limits<double>::min();
+	double *mins = new double[data[0].size];
+	double *maxes = new double[data[0].size];
+	std::fill_n(mins, data[0].size, max);
+	std::fill_n(maxes, data[0].size, min);
+
+	for (auto row : data) {
+		for (size_t i = 0; i < row.size; i++) {
+			if (row.fields[i] > maxes[i])
+				maxes[i] = row.fields[i];
+			if (row.fields[i] < mins[i])
+				mins[i] = row.fields[i];
+		}
+	}
+	for (auto row : data) {
+		for (size_t i = 0; i < 4; i++) {
+			row.fields[i] = (row.fields[i] - mins[i]) / (maxes[i] - mins[i]);
+		}
+	}
+}
+
+
+int main(int argc, char **argv)
+{
+	std::srand(time(nullptr));
+	auto dataset = read_iris_data("iris.data");
+	normalize(dataset);
+	std::random_shuffle(dataset.begin(), dataset.end());
+	auto splitted_data = split_data(dataset);
+	dataset.clear();
+	run_knn(splitted_data.second, splitted_data.first, 10);
 	return 0;
 }
