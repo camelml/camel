@@ -67,36 +67,13 @@ void run_knn(std::vector<Data> test, std::vector<Data> training, size_t k)
 			correct++;
 		}
 	}
+	std::cout<<"The total number of correct predictions are: "<<std::endl;
 	std::cout <<
-		correct << " of "<< test.size() <<
+		correct << " from the size of test is "<< test.size() <<
 		" (" <<
 		static_cast<double>(100.0) *correct/static_cast<double>(test.size()) <<
 		")" << std::endl;
 
-}
-
-void normalize(std::vector<Data> data)
-{
-	double max = std::numeric_limits<double>::max();
-	double min = std::numeric_limits<double>::min();
-	double *mins = new double[data[0].size];
-	double *maxes = new double[data[0].size];
-	std::fill_n(mins, data[0].size, max);
-	std::fill_n(maxes, data[0].size, min);
-
-	for (auto row : data) {
-		for (size_t i = 0; i < row.size; i++) {
-			if (row.fields[i] > maxes[i])
-				maxes[i] = row.fields[i];
-			if (row.fields[i] < mins[i])
-				mins[i] = row.fields[i];
-		}
-	}
-	for (auto row : data) {
-		for (size_t i = 0; i < 4; i++) {
-			row.fields[i] = (row.fields[i] - mins[i]) / (maxes[i] - mins[i]);
-		}
-	}
 }
 
 
@@ -104,7 +81,6 @@ int main(int argc, char **argv)
 {
 	std::srand(time(nullptr));
 	auto dataset = read_iris_data("iris.data");
-	normalize(dataset);
 	std::random_shuffle(dataset.begin(), dataset.end());
 	auto splitted_data = split_data(dataset);
 	dataset.clear();
