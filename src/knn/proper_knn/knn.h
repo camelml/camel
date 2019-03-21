@@ -26,8 +26,6 @@ class Knn
 {
 public:
 	std::string getNeighbours(Data d, std::vector<Data> data_list, size_t k);
-
-private:
 };
 
 #endif

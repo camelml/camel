@@ -4,50 +4,45 @@
 
 std::string Knn::getNeighbours(Data d, std::vector<Data> data_list, size_t k)
 {
-	double *top_k_distances = new double[k];
-	int *top_k_indexes = new int[k];
-	std::fill_n(top_k_indexes, k, -1);
+	double *distances_of_top_k_elements = new double[k];
+	int *indexes_of_top_k_elements = new int[k];
+	std::fill_n(indexes_of_top_k_elements, k, -1);
 	for (size_t index = 0; index < data_list.size(); index++)
 	{
 		double distance = d.distance(data_list[index]);
-		size_t ind = 0;
-		while (ind < k && top_k_indexes[ind] != -1 && top_k_distances[ind] < distance)
+		size_t idx = 0;
+		while (idx < k && indexes_of_top_k_elements[idx] != -1 && distances_of_top_k_elements[idx] < distance)
 		{
-			ind++;
+			idx++;
 		}
-		if (ind < k)
+		if (idx < k)
 		{
-			int shift_index = k - 1;
-			while (shift_index > ind)
+			int shift_index_by_1 = k - 1;
+			while (shift_index_by_1 > idx)
 			{
-				top_k_indexes[shift_index] = top_k_indexes[shift_index - 1];
-				top_k_distances[shift_index] = top_k_distances[shift_index - 1];
-				shift_index--;
+				indexes_of_top_k_elements[shift_index_by_1] = indexes_of_top_k_elements[shift_index_by_1 - 1];
+				distances_of_top_k_elements[shift_index_by_1] = distances_of_top_k_elements[shift_index_by_1 - 1];
+				shift_index_by_1--;
 			}
-			top_k_indexes[ind] = index;
-			top_k_distances[ind] = distance;
+			indexes_of_top_k_elements[idx] = index;
+			distances_of_top_k_elements[idx] = distance;
 		}
 	}
-	/*
-	if (std::rand() % 100 == 0)
+    std::cout << " The most nearest neighbors are : " << std::endl;
+    for (size_t i = 0; i < k; i++)
+    {
+        std::cout << indexes_of_top_k_elements[i] << ": " << distances_of_top_k_elements[i] << std::endl;
+    }
+	size_t index = 0;
+	std::map<std::string, int> map_of_top_k_matching;
+	while (index < k && indexes_of_top_k_elements[index] != -1)
 	{
-		std::cout << "-------------------------------" << std::endl;
-		for (size_t i = 0; i < k; i++)
-		{
-			std::cout << top_k_indexes[i] << ": " << top_k_distances[i] << std::endl;
-		}
-	}
-	 */
-	size_t index = 0; 
-	std::map<std::string, int> top_k_class_map;
-	while (index < k && top_k_indexes[index] != -1)
-	{
-		top_k_class_map[data_list[top_k_indexes[index]].cls]++;
+		map_of_top_k_matching[data_list[indexes_of_top_k_elements[index]].cls]++;
 		index++;
 	}
 	int max = -1;
 	std::string maxClass;
-	for (auto pair : top_k_class_map)
+	for (auto pair : map_of_top_k_matching)
 	{
 		if (pair.second > max)
 		{
