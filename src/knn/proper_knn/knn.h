@@ -2,7 +2,6 @@
 #define KNN_H
 #include <vector>
 #include <string>
-#include <algorithm>
 #include <bits/stdc++.h>
 struct Data
 {
