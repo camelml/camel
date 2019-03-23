@@ -2,7 +2,6 @@
 #define KNN_H
 #include <vector>
 #include <string>
-#include <algorithm>
 #include <bits/stdc++.h>
 struct Data
 {
@@ -26,8 +25,6 @@ class Knn
 {
 public:
 	std::string getNeighbours(Data d, std::vector<Data> data_list, size_t k);
-
-private:
 };
 
 #endif
