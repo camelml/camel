@@ -1,16 +1,27 @@
-cmake_minimum_required(VERSION 2.8.9)
+cmake_minimum_required(VERSION 3.0.0)
 project(camel)
-set(CMAKE_BUILD_TYPE Release)
 
-#Bring the headers, such as Student.h into the project
+#set flags
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -l armadillo -std=c++17")
+
+#Bring the headers into the project
 include_directories(include)
+file(GLOB_RECURSE HEADERS "include/*.hpp" )
 
-#However, the file(GLOB...) allows for wildcard additions:
+#Include source files for wildcard additions:
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
-#Generate the static library from the sources
-add_library(testStudent STATIC ${SOURCES})
+#Link armadillo
+find_package(Armadillo REQUIRED)
+include_directories(${ARMADILLO_INCLUDE_DIRS})
 
-#Set the location for library installation -- i.e., /usr/lib in this case
-# not really necessary in this example. Use "sudo make install" to apply
-install(TARGETS libcamel.a DESTINATION /usr/lib)
+#Generate the static library from the sources
+add_library(camel STATIC ${SOURCES})
+target_link_libraries(camel ${ARMADILLO_LIBRARIES})
+
+
+#Install library
+install(TARGETS camel DESTINATION lib)
+
+#Install header files
+install(FILES ${HEADERS} DESTINATION include/camel)
