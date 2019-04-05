@@ -55,6 +55,3 @@ Contains csv,txt files used for examples
    `make install`
 
 ## Running
-
-1. Run main.cpp using the following command
-   `g++ -std=c++11 main.cpp`
