@@ -11,6 +11,7 @@ class node
     string column_name;
     mat split_data;
     int depth_num;
+    bool is_leaf_node=false;
     node left;
     node right;
 };
