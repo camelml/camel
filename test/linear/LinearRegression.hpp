@@ -1,12 +1,12 @@
-#ifndef LOGISTICREGRESSION_HPP_INCLUDED
-#define LOGISTICREGRESSION_HPP_INCLUDED
+#ifndef LINEARREGRESSION_HPP_INCLUDED
+#define LINEARREGRESSION_HPP_INCLUDED
 
-#include <iostream>
 #include <armadillo>
+#include <iostream>
 
 using namespace arma;
 
-class LogisticRegression
+class LinearRegression
 {
 private:
   mat X;
@@ -20,17 +20,16 @@ private:
   vec means;
   vec standardDeviations;
   void split(const double, const double);
-  mat sigmoid(mat const &);
-  mat gradientDescent(const double &, const int &);
+
+  mat gradientDescent(const mat &, const mat &, const double, const int);
   mat computeCost(const mat &X, const mat &y, const mat &theta);
 
 public:
   void scale();
-
-  LogisticRegression(std::string const &, const double, const double);
+  void accuracy(mat&);
+  LinearRegression(std::string const &, const double, const double);
   void fit(const double &, const int &);
   std::vector<double> predict();
-  void accuracy(std::vector<double>);
 };
 
 #endif

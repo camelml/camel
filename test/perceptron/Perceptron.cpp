@@ -20,6 +20,20 @@ void Perceptron::split(const double train, const double test)
     X_test = X.submat(trainIndex + 1, 0, X.n_rows - 1, X.n_cols - 1);
     y_train = y.submat(0, 0, trainIndex, y.n_cols - 1);
     y_test = y.submat(trainIndex + 1, 0, y.n_rows - 1, y.n_cols - 1);
+    // cout << "dataset:  \n"
+    //      << dataSet << endl
+    //      << "X:  \n"
+    //      << X << endl
+    //      << "y: \n"
+    //      << y << endl
+    //      << "X_train:  \n"
+    //      << X_train << endl
+    //      << "X_test:  \n"
+    //      << X_test << endl
+    //      << "y_train:  \n"
+    //      << y_train << endl
+    //      << "y_test:  \n"
+    //      << y_test << endl;
 }
 mat Perceptron::sigmoid(mat const &z)
 {
@@ -30,6 +44,11 @@ double Perceptron::sigmoid(double const &z)
 {
     return (1.0 / (1.0 + exp(-z)));
 }
+
+/**
+ * TODO:
+ * Implement cost function
+ * */
 
 void Perceptron::fit(const double &alpha = 0.002, const int &iterations = 1000)
 {

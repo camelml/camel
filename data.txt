@@ -1,0 +1,335 @@
+Data for camel
+
+
+
+Linear Regression
+Test 1:
+Dataset size: 100
+Time:797 microseconds or 0.797000 ms 
+Iterations: 50
+0.283015
+0.420021
+0.603310
+0.923690
+1.064449
+1.393333
+1.508782
+1.543678
+1.580171
+1.963068
+first error: 1312.791677
+19.121844
+Sum of errors: 19.121844
+Mean percent of errors: 19.121844
+
+Linear Regression
+Test 2:
+Dataset size: 1000
+Time:7472 microseconds or 7.472000 ms 
+Iterations: 50
+0.037614
+0.095854
+0.147771
+0.212789
+0.318383
+0.396873
+0.468492
+0.498463
+0.535240
+0.644579
+first error: 5542.871270
+56.081977
+Sum of errors: 56.081977
+Mean percent of errors: 5.608198
+
+Linear Regression
+Test 4:
+Dataset size: 10000
+Time:13418 microseconds or 13.418000 ms 
+Iterations: 25
+size 9915
+8642.333318
+Sum of errors: 8642.333318
+Mean percent of errors: 87.164229
+
+
+
+Linear Regression
+Test 4:
+Dataset size: 100000
+Time:24461 microseconds or 24.461000 ms 
+Iterations: 6
+size 99023
+85485.198983
+Sum of errors: 85485.198983
+Mean percent of errors: 86.328630
+
+
+Polynomial Regression
+Test :
+Dataset size: 100
+Time:1218 microseconds or 1.218 ms 
+Iterations: 100
+16.9759
+20.9747
+11.7325
+22.0411
+9.40703
+20.4385
+13.4998
+5.58057
+11.3342
+42.0776
+size 100
+17.3994
+Sum of errors: 17.3994
+Mean percent of errors: 17.3994
+
+Polynomial Regression
+Test :
+Dataset size: 100
+Time:7322 microseconds or 7.322 ms 
+Iterations: 50
+3.74793
+7.6515
+8.30242
+6.05629
+7.48534
+6.25987
+8.78382
+0.954357
+6.21468
+13.841
+size 1000
+60.1279
+Sum of errors: 60.1279
+Mean percent of errors: 6.01279
+
+Polynomial Regression
+Test :
+Dataset size: 10000
+Time:10613 microseconds or 10.613 ms 
+Iterations: 20
+82.1332
+82.2577
+86.3303
+82.1714
+76.6739
+75.9051
+92.7631
+79.6599
+87.8386
+92.86
+size 9915
+8666.22
+Sum of errors: 8666.22
+Mean percent of errors: 87.4051
+
+
+Polynomial Regression
+Test :
+Dataset size: 100000
+Time:62271 microseconds or 62.271 ms 
+Iterations: 10
+51.6365
+87.8271
+81.6131
+89.997
+71.6868
+21.5375
+90.6761
+94.399
+94.4991
+90.5793
+size 99023
+86044
+Sum of errors: 86044
+Mean percent of errors: 86.893
+
+
+Multi Variate Regression
+Test 4:
+Dataset size: 100
+Time:714 microseconds or 0.714000 ms 
+Iterations: 100
+size 100
+19.783284
+Sum of errors: 19.783284
+Mean percent of errors: 19.783284
+
+
+Multivariate Linear Regression
+Test 4:
+Dataset size: 1000
+Time:6744 microseconds or 6.744000 ms 
+Iterations: 100
+size 1000
+64.764708
+Sum of errors: 64.764708
+Mean percent of errors: 6.476471
+
+Multivariate Linear Regression
+Test 4:
+Dataset size: 10000
+Time:14720 microseconds or 14.720000 ms 
+Iterations: 20
+size 9915
+8575.326135
+Sum of errors: 8575.326135
+Mean percent of errors: 86.488413
+
+Multivariate Linear Regression
+Test 4:
+Dataset size: 100000
+Time:26540 microseconds or 26.540000 ms 
+Iterations: 5
+size 99023
+85458.693540
+Sum of errors: 85458.693540
+Mean percent of errors: 86.301863
+
+
+
+
+
+Logistic Regression
+Test 1:
+Dataset size: 100
+Time:871 microseconds or 0.871 ms 
+Iterations: 50
+Correct outputs: 4
+Accuracy: 80
+
+Logistic Regression
+Test 1:
+Dataset size: 1000
+Time:3925 microseconds or 3.925 ms 
+Iterations: 20
+Correct outputs: 517
+Accuracy: 51.7
+
+Logistic Regression
+Test 1:
+Dataset size: 10000
+Time:5427 microseconds or 5.427 ms 
+Iterations: 5
+Correct outputs: 5015
+Accuracy: 50.15
+
+
+Logistic Regression
+Test 1:
+Dataset size: 100000
+Time:7669 microseconds or 7.669 ms 
+Iterations: 1
+Correct outputs: 50040
+Accuracy: 50.04
+
+
+
+KNN
+Test 1:
+size: 100
+Time:3441 microseconds or 3.441 ms 
+Correct outputs: 12
+Accuracy: 60
+
+
+KNN
+Test 2:
+size: 1000
+Time:91042 microseconds or 91.042 ms 
+Correct outputs: 49
+Accuracy: 49
+
+KNN
+Test 3:
+size: 10000
+Time:7611117 microseconds or 7611.12 ms 
+Correct outputs: 490
+Accuracy: 49
+
+KNN
+Test 3:
+size: 100000
+System Crashes
+
+
+
+
+KMEANS
+Test 1:
+Dataset size: 100
+Time:1353 microseconds or 1.353 ms 
+
+KMEANS
+Test 2:
+Dataset size: 1000
+Time:4547 microseconds or 4.547 ms 
+
+
+
+KMEANS
+Test 3:
+Dataset size: 10000
+Time:27875 microseconds or 27.875 ms 
+
+KMEANS
+Test 4:
+Dataset size: 100000
+Time:225813 microseconds or 225.813 ms
+
+Perceptron
+Test 1:
+Dataset size: 100
+Time:311 microseconds or 0.311 ms 
+Iterations: 5
+y_pred: 
+    1.4540
+   -4.4580
+   -2.7540
+   13.0880
+   10.1060
+    0.8040
+    4.5920
+   -3.2800
+    4.3160
+    6.0760
+   -2.6480
+   -6.3140
+    1.4560
+    4.8120
+    6.7820
+    0.3380
+   -3.9840
+    1.5260
+    9.8780
+    0.3600
+Correct outputs: 11
+Accuracy: 55
+
+
+Perceptron
+Test 1:
+Dataset size: 100
+Time:5266 microseconds or 5.266 ms 
+Iterations: 10
+Correct outputs: 103
+Accuracy: 51.5
+
+
+Perceptron
+Test 1:
+Dataset size: 10000
+Time:25846 microseconds or 25.846 ms 
+Iterations: 5
+Correct outputs: 998
+Accuracy: 49.9
+
+Perceptron
+Test 1:
+Dataset size: 100
+Time:153788 microseconds or 153.788 ms 
+Iterations: 3
+Correct outputs: 10096
+Accuracy: 50.48
