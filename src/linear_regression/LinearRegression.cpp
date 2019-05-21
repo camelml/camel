@@ -45,7 +45,7 @@ mat LinearRegression::gradientDescent(const mat &X, const mat &y, const double a
 std::vector<double> LinearRegression::predict()
 {
     mat y_pred = (X_test * theta);
-    accuracy(y_pred);
+    // accuracy(y_pred);
     return conv_to<stdvec>::from(y_pred);
 }
 
@@ -54,29 +54,29 @@ void LinearRegression::fit(const double &alpha, const int &iterations)
     gradientDescent(X, y, alpha, iterations);
 }
 
-void LinearRegression::scale()
-{
-    for (int i = 0; i < y.n_rows; i++)
-    {
+// void LinearRegression::scale()
+// {
+//     for (int i = 0; i < y.n_rows; i++)
+//     {
 
-        y(i) = y(i) / 100;
-    }
-}
+//         y(i) = y(i) / 100;
+//     }
+// }
 
-void LinearRegression::accuracy(mat &y_pred)
-{
+// void LinearRegression::accuracy(mat &y_pred)
+// {
 
-    long double error = 0;
+//     long double error = 0;
 
-    for (int i = 0; i < y_pred.n_rows; i++)
-    {
-        error += std::fabs((y_test(i) - y_pred(i)) / y_train(i));
-    }
-    cout << "size " << y_pred.n_rows << endl;
+//     for (int i = 0; i < y_pred.n_rows; i++)
+//     {
+//         error += std::fabs((y_test(i) - y_pred(i)) / y_train(i));
+//     }
+//     cout << "size " << y_pred.n_rows << endl;
 
-    cout << error << endl;
+//     cout << error << endl;
 
-    cout << "Sum of errors: " << error << endl;
+//     cout << "Sum of errors: " << error << endl;
 
-    cout << "Mean percent of errors: " << error * 100 / y_pred.n_rows << endl;
-}
+//     cout << "Mean percent of errors: " << error * 100 / y_pred.n_rows << endl;
+// }

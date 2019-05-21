@@ -10,8 +10,8 @@ KMeans::KMeans(std::string const &path, const int &k)
 
 void KMeans::print()
 {
-    cout << dataSet << endl
-         << k << endl;
+    cout << "dataset: " << dataSet << endl
+         << "k:" << k << endl;
 }
 
 void KMeans::findMinMax()
@@ -118,5 +118,5 @@ void KMeans::findClusters()
     {
         clusters(i) = classify(dataSet.row(i));
     }
-    // cout << clusters << endl;
+    cout << clusters << endl;
 }
